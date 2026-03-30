@@ -1,12 +1,144 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Cynotraque Moselle</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>Cynotraque Moselle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f2a1d;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(135deg, #0f2a1d, #d97706);
+    }
+
+    header img {
+      width: 180px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      opacity: 0.9;
+    }
+
+    section {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 25px;
+      background: #d97706;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      margin: 15px;
+      border-radius: 10px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0a1f14;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img src="public/logo.png.jpeg" alt="Cynotraque Moselle">
+  <h1>Cynotraque Moselle</h1>
+  <p>Traque • Chiens • Territoire</p>
+</header>
+
+<section>
+  <div class="container">
+    <h2>Une association de terrain</h2>
+    <p>
+      Cynotraque Moselle rassemble des passionnés de traque au chien,
+      engagés dans une pratique sérieuse, organisée et respectueuse du territoire.
+    </p>
+  </div>
+</section>
+
+<section style="background:#123524;">
+  <div class="container">
+    <h2>Nos activités</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🐕 Travail des chiens</h3>
+        <p>Valorisation des chiens de traque et développement des compétences.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌲 Terrain</h3>
+        <p>Interventions organisées en Moselle, avec rigueur et coordination.</p>
+      </div>
+
+      <div class="card">
+        <h3>🤝 Esprit d’équipe</h3>
+        <p>Cohésion, entraide et transmission entre membres.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Rejoindre l’association</h2>
+    <p>
+      Vous êtes passionné par la traque et souhaitez intégrer une équipe structurée ?
+      Contactez-nous.
+    </p>
+
+    <a class="btn" href="#">Nous contacter</a>
+  </div>
+</section>
+
+<footer>
+  Cynotraque Moselle — Association de traqueurs en Moselle
+</footer>
+
+</body>
 </html>
