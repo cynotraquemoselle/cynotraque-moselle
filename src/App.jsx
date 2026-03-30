@@ -1,7 +1,7 @@
 export default function App() {
   return (
     <div style={{fontFamily: "Arial", padding: 40}}>
-      <img src="/logo.png" style={{width: 150}} />
+      <img src="/Logo.png.jpeg" style={{width: 150}} />
 
       <h1>Cynotraque Moselle</h1>
       <p>Traque, chiens et territoire</p>
