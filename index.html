@@ -1,144 +1,644 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Cynotraque Moselle</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cynotraque Moselle - Formation, sécurité et promotion de la traque en Moselle." />
   <style>
+    :root {
+      --green-950: #08170f;
+      --green-900: #0f2a1d;
+      --green-800: #183a29;
+      --green-700: #245239;
+      --orange-500: #d97706;
+      --orange-400: #f59e0b;
+      --sand: #f5f1e8;
+      --text-dark: #172018;
+      --text-soft: #d7e0d7;
+      --white: #ffffff;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 12px 30px rgba(0,0,0,0.22);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      background: #0f2a1d;
-      color: white;
+      background: var(--sand);
+      color: var(--text-dark);
       line-height: 1.6;
     }
 
-    header {
-      text-align: center;
-      padding: 60px 20px;
-      background: linear-gradient(135deg, #0f2a1d, #d97706);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    header img {
-      width: 180px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: 38px;
-      margin-bottom: 10px;
-    }
-
-    p {
-      opacity: 0.9;
-    }
-
-    section {
-      padding: 50px 20px;
-      text-align: center;
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     .container {
-      max-width: 900px;
-      margin: auto;
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background: rgba(8, 23, 15, 0.88);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+    }
+
+    .brand img {
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      padding: 4px;
+    }
+
+    .brand-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-sub {
+      font-size: 0.85rem;
+      color: #d6ddd6;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #edf3ed;
+      font-size: 0.95rem;
+    }
+
+    .nav a:hover {
+      color: var(--orange-400);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255,255,255,0.10) 0 8px, transparent 9px),
+        radial-gradient(circle at 18% 24%, rgba(255,190,92,0.18) 0 5px, transparent 6px),
+        radial-gradient(circle at 28% 20%, rgba(255,255,255,0.08) 0 7px, transparent 8px),
+        radial-gradient(circle at 82% 15%, rgba(255,255,255,0.09) 0 8px, transparent 9px),
+        linear-gradient(135deg, rgba(8,23,15,0.95), rgba(24,58,41,0.92) 52%, rgba(217,119,6,0.88));
+      color: var(--white);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(8,23,15,0.65), rgba(8,23,15,0.10));
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 40px;
+      align-items: center;
+      padding: 72px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--orange-400);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 4.3rem);
+      line-height: 1.06;
+      margin-bottom: 18px;
+      max-width: 760px;
+    }
+
+    .hero p.lead {
+      max-width: 720px;
+      font-size: 1.08rem;
+      color: #eef3ef;
+      opacity: 0.95;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 25px;
-      padding: 12px 25px;
-      background: #d97706;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
+      padding: 14px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary {
+      background: var(--orange-500);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--orange-400);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.10);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.16);
+      transform: translateY(-1px);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 28px;
+      max-width: 760px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      color: #ffd28c;
+      margin-bottom: 4px;
+    }
+
+    .hero-badge {
+      justify-self: end;
+      width: min(420px, 100%);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-badge img {
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .section {
+      padding: 74px 0;
+    }
+
+    .section-dark {
+      background: linear-gradient(180deg, var(--green-900), var(--green-950));
+      color: var(--white);
+    }
+
+    .section-head {
+      margin-bottom: 28px;
+    }
+
+    .section-kicker {
+      color: var(--orange-500);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section h2 {
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      max-width: 820px;
+      font-size: 1.02rem;
+      opacity: 0.95;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
     }
 
     .card {
-      background: rgba(255,255,255,0.05);
-      padding: 20px;
-      margin: 15px;
-      border-radius: 10px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.04);
     }
 
-    .grid {
+    .card-dark {
+      background: var(--card);
+      color: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: none;
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      opacity: 0.92;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .panel {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    }
+
+    .panel ul {
+      list-style: none;
+      margin-top: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel li {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: #f2f4ef;
+      border-left: 5px solid var(--orange-500);
+      font-weight: 600;
+    }
+
+    .quote {
+      background: linear-gradient(135deg, #153523, #0d2117);
+      color: var(--white);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .quote p {
+      font-size: 1.08rem;
+      opacity: 0.96;
+    }
+
+    .quote strong {
+      display: block;
+      margin-top: 18px;
+      color: #ffd28c;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, #1a402d, #d97706);
+      color: var(--white);
+      border-radius: 24px;
+      padding: 36px;
+      box-shadow: var(--shadow);
       display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
       flex-wrap: wrap;
-      justify-content: center;
+    }
+
+    .cta-box h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
     }
 
     footer {
-      text-align: center;
-      padding: 30px;
-      background: #0a1f14;
-      font-size: 14px;
+      background: var(--green-950);
+      color: #d7e0d7;
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.06);
+      padding: 3px;
+    }
+
+    .contact-mail {
+      color: #ffd28c;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .pillars,
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-badge {
+        justify-self: start;
+        max-width: 320px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        text-align: left;
+      }
+
+      .hero-inner {
+        padding: 48px 0;
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .cta-box {
+        padding: 26px;
+      }
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <img src="public/Logo.png.jpeg" alt="Cynotraque Moselle">
-  <h1>Cynotraque Moselle</h1>
-  <p>Traque • Chiens • Territoire</p>
-</header>
-
-<section>
-  <div class="container">
-    <h2>Une association de terrain</h2>
-    <p>
-      Cynotraque Moselle rassemble des passionnés de traque au chien,
-      engagés dans une pratique sérieuse, organisée et respectueuse du territoire.
-    </p>
-  </div>
-</section>
-
-<section style="background:#123524;">
-  <div class="container">
-    <h2>Nos activités</h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>🐕 Travail des chiens</h3>
-        <p>Valorisation des chiens de traque et développement des compétences.</p>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <img src="./public/logo.png.jpeg" alt="Logo Cynotraque Moselle" />
+        <div>
+          <div class="brand-title">Cynotraque Moselle</div>
+          <div class="brand-sub">Formation • Sécurité • Promotion de la traque</div>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>🌲 Terrain</h3>
-        <p>Interventions organisées en Moselle, avec rigueur et coordination.</p>
+      <nav class="nav">
+        <a href="#mission">Mission</a>
+        <a href="#priorites">Priorités</a>
+        <a href="#engagement">Engagement</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow">
+          <span class="dot"></span>
+          Association de terrain en Moselle
+        </div>
+
+        <h1>Former, sécuriser et promouvoir une traque sérieuse, structurée et respectée.</h1>
+
+        <p class="lead">
+          Cynotraque Moselle porte une vision claire de l’activité : renforcer les compétences, diffuser les bonnes pratiques de sécurité et valoriser l’image de la traque à travers un cadre exigeant, utile et crédible.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Nous contacter</a>
+          <a href="#priorites" class="btn btn-secondary">Découvrir nos priorités</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>Formation</strong>
+            Développer les connaissances, les repères et les réflexes utiles.
+          </div>
+          <div class="stat">
+            <strong>Sécurité</strong>
+            Faire progresser les pratiques de terrain dans un cadre clair.
+          </div>
+          <div class="stat">
+            <strong>Promotion</strong>
+            Défendre une image sérieuse et moderne de la traque.
+          </div>
+        </div>
       </div>
 
-      <div class="card">
-        <h3>🤝 Esprit d’équipe</h3>
-        <p>Cohésion, entraide et transmission entre membres.</p>
+      <div class="hero-badge">
+        <img src="./public/Logo.png.jpeg" alt="Cynotraque Moselle" />
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <section class="section" id="mission">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Mission</div>
+        <h2>Une association tournée vers l’utilité concrète sur le terrain.</h2>
+        <p class="section-desc">
+          Notre objectif est simple : faire progresser la traque par la formation, la sécurité et une meilleure reconnaissance de son rôle. Nous voulons contribuer à une pratique mieux comprise, mieux organisée et mieux représentée.
+        </p>
+      </div>
 
-<section>
-  <div class="container">
-    <h2>Rejoindre l’association</h2>
-    <p>
-      Vous êtes passionné par la traque et souhaitez intégrer une équipe structurée ?
-      Contactez-nous.
-    </p>
+      <div class="cards-3">
+        <article class="card">
+          <h3>Former utile</h3>
+          <p>
+            Partager des repères clairs, transmettre les bonnes pratiques et accompagner la montée en compétence des personnes engagées sur le terrain.
+          </p>
+        </article>
 
-    <a class="btn" href="#">Nous contacter</a>
-  </div>
-</section>
+        <article class="card">
+          <h3>Sécuriser davantage</h3>
+          <p>
+            Promouvoir une culture de vigilance, de coordination et de responsabilité, au service du bon déroulement des actions.
+          </p>
+        </article>
 
-<footer>
-  Cynotraque Moselle — Association de traqueurs en Moselle
-</footer>
+        <article class="card">
+          <h3>Valoriser la traque</h3>
+          <p>
+            Défendre une image sérieuse, exigeante et moderne de la traque, fondée sur l’utilité, l’engagement et la cohésion.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="priorites">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Priorités</div>
+        <h2>Trois axes clairs pour faire avancer les pratiques.</h2>
+        <p class="section-desc">
+          Cynotraque Moselle s’inscrit dans une logique de terrain : des messages simples, des objectifs concrets et une volonté constante d’amélioration.
+        </p>
+      </div>
+
+      <div class="cards-3">
+        <article class="card card-dark">
+          <h3>Formation</h3>
+          <p>
+            Structurer l’apprentissage, renforcer les connaissances utiles et favoriser les échanges d’expérience entre personnes engagées.
+          </p>
+        </article>
+
+        <article class="card card-dark">
+          <h3>Sécurité</h3>
+          <p>
+            Consolider les réflexes essentiels, rappeler les exigences de terrain et contribuer à un cadre de pratique plus lisible et plus sûr.
+          </p>
+        </article>
+
+        <article class="card card-dark">
+          <h3>Promotion de la traque</h3>
+          <p>
+            Mieux expliquer le rôle de la traque, mettre en valeur son utilité et porter une parole cohérente, responsable et respectueuse.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="engagement">
+    <div class="container pillars">
+      <div class="panel">
+        <div class="section-kicker">Engagement</div>
+        <h2>Ce que nous voulons faire progresser</h2>
+        <ul>
+          <li>Une culture de terrain plus structurée et mieux transmise</li>
+          <li>Une attention forte portée à la sécurité et à la coordination</li>
+          <li>Une parole crédible pour mieux promouvoir la traque</li>
+          <li>Une dynamique collective fondée sur l’exigence et l’entraide</li>
+        </ul>
+      </div>
+
+      <div class="quote">
+        <p>
+          “La traque mérite d’être mieux expliquée, mieux encadrée et mieux reconnue. Notre ambition est d’en porter une image sérieuse, utile et responsable, au plus près du terrain.”
+        </p>
+        <strong>Cynotraque Moselle</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <div>
+          <h3>Prendre contact</h3>
+          <p>
+            Pour échanger, obtenir des informations ou suivre l’évolution de l’association.
+          </p>
+        </div>
+        <a class="btn btn-primary" href="mailto:cynotraque.moselle@gmail.com">cynotraque.moselle@gmail.com</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="./public/logo.png.jpeg" alt="Logo Cynotraque Moselle" />
+        <div>
+          <div><strong>Cynotraque Moselle</strong></div>
+          <div>Formation • Sécurité • Promotion de la traque</div>
+        </div>
+      </div>
+
+      <div class="contact-mail">
+        cynotraque.moselle@gmail.com
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
