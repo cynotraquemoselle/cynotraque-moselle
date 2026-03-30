@@ -13,7 +13,7 @@ export default function App() {
       </p>
 
       <h3>Contact</h3>
-      <p>Email : contact@cynotraque-moselle.fr</p>
+      <p>Email : cynotraque.moselle@gmail.com</p>
     </div>
   );
 }
